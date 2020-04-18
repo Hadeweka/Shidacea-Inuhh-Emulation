@@ -39,14 +39,14 @@
 
 	"scripts": [
 		"EmulationLayer.rb",
-		"Inuhh Shinvasion 1_0_1/lib/Collider.rb",
-		"Inuhh Shinvasion 1_0_1/lib/Misc.rb",
-		"Inuhh Shinvasion 1_0_1/lib/Datas.rb",
-		"Inuhh Shinvasion 1_0_1/lib/Objects.rb",
-		"Inuhh Shinvasion 1_0_1/lib/Events.rb",
-		"Inuhh Shinvasion 1_0_1/lib/Enemies/",
-		"Inuhh Shinvasion 1_0_1/lib/Enemies.rb",
-		"Inuhh Shinvasion 1_0_1/lib/Level.rb",
-		"Inuhh Shinvasion 1_0_1/lib/Inuhh.rb"
+		"Inuhh-Shinvasion/lib/Collider.rb",
+		"Inuhh-Shinvasion/lib/Misc.rb",
+		"Inuhh-Shinvasion/lib/Datas.rb",
+		"Inuhh-Shinvasion/lib/Objects.rb",
+		"Inuhh-Shinvasion/lib/Events.rb",
+		"Inuhh-Shinvasion/lib/Enemies/",
+		"Inuhh-Shinvasion/lib/Enemies.rb",
+		"Inuhh-Shinvasion/lib/Level.rb",
+		"Inuhh-Shinvasion/lib/Inuhh.rb"
 	]
 }
