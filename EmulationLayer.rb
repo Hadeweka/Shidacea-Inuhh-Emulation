@@ -42,6 +42,18 @@ end
 
 module Gosu
 
+	# TODO: Fix conflict between symbols and constants
+	KbEscape = SDC::EventKey::Escape
+	KbReturn = SDC::EventKey::Enter 
+	KbW = SDC::EventKey::W
+	KbA = SDC::EventKey::A
+	KbS = SDC::EventKey::S
+	KbD = SDC::EventKey::D
+	KbLeft = SDC::EventKey::Left
+	KbRight = SDC::EventKey::Right
+	KbUp = SDC::EventKey::Up
+	KbDown = SDC::EventKey::Down
+
 	def self.default_font_name
 		return ""
 	end
@@ -52,6 +64,10 @@ module Gosu
 
 	def milliseconds
 		return 0
+	end
+
+	def button_down?(arg)
+		return SDC::key_pressed?(arg)
 	end
 
 	class Color
@@ -133,6 +149,10 @@ module Gosu
 			main_routine(SceneDummy, SDC::Game, @caption, @width, @height)
 		end
 
+		def close
+			SDC.next_scene = nil
+		end
+
 	end
 
 end
@@ -145,6 +165,16 @@ class SceneDummy < SDC::Scene
 
 	def draw
 		Emulation.gosu_game.draw
+	end
+
+	def handle_event(event)
+		if event.has_type?(:KeyPressed) then
+			Emulation.gosu_game.button_down(event.key_code)
+
+		elsif event.has_type?(:Closed)
+			SDC.next_scene = nil
+
+		end
 	end
 
 end
