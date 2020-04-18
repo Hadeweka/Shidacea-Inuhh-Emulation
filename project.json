@@ -1,0 +1,52 @@
+{
+	"title": "Inuhh Shinvasion",
+
+	"subtitle": "Testing environment for Shidacea and its extensions",
+
+	"description": "A simple test project to demonstrate the capabilities of Shidacea.\nStart it and play around with the options.",
+
+	"genres": [
+		"Jump'n'Run" 
+	],
+
+	"project_version": "1.0.1",
+
+	"shidacea_version": "0.0.1d",
+
+	"developers": [
+		"Hadeweka"
+	],
+
+	"year": 2020,
+
+	"keywords": [
+		"inuhh",
+		"dog",
+		"sfml",
+		"jump-n-run"
+	],
+
+	"thumbnail": "",
+
+	"screenshots": [
+		{
+			"file": "",
+			"caption": "Dummy"
+		}
+	],
+
+	"jingle": "",
+
+	"scripts": [
+		"EmulationLayer.rb",
+		"Inuhh Shinvasion 1_0_1/lib/Collider.rb",
+		"Inuhh Shinvasion 1_0_1/lib/Misc.rb",
+		"Inuhh Shinvasion 1_0_1/lib/Datas.rb",
+		"Inuhh Shinvasion 1_0_1/lib/Objects.rb",
+		"Inuhh Shinvasion 1_0_1/lib/Events.rb",
+		"Inuhh Shinvasion 1_0_1/lib/Enemies/",
+		"Inuhh Shinvasion 1_0_1/lib/Enemies.rb",
+		"Inuhh Shinvasion 1_0_1/lib/Level.rb",
+		"Inuhh Shinvasion 1_0_1/lib/Inuhh.rb"
+	]
+}
