@@ -12,6 +12,18 @@ end
 
 $LOAD_PATH = ""
 
+module Emulation
+
+	def self.gosu_game=(value)
+		@gosu_game = value
+	end
+
+	def self.gosu_game
+		return @gosu_game
+	end
+
+end
+
 class Entity
 
 end
@@ -34,6 +46,14 @@ module Gosu
 		return ""
 	end
 
+	def scale(sx, sy, &block)
+		block.call
+	end
+
+	def milliseconds
+		return 0
+	end
+
 	class Color
 
 	end
@@ -48,6 +68,10 @@ module Gosu
 
 		end
 
+		def draw(text, x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
+
+		end
+
 	end
 
 	class Image
@@ -57,6 +81,10 @@ module Gosu
 		end
 
 		def self.load_tiles(source, tile_width, tile_height, options = {})
+
+		end
+
+		def draw(x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
 
 		end
 
@@ -88,12 +116,12 @@ module Gosu
 	
 	class Window
 
+		attr_accessor :width, :height, :caption
+
 		def initialize(width, height, options = {})
-			
-		end
-
-		def caption=(value)
-
+			@width = width
+			@height = height
+			Emulation.gosu_game = self
 		end
 
 		def text_input=(value)
@@ -102,8 +130,21 @@ module Gosu
 
 		def show
 			puts "Initial dummy methods successful"
+			main_routine(SceneDummy, SDC::Game, @caption, @width, @height)
 		end
 
+	end
+
+end
+
+class SceneDummy < SDC::Scene
+
+	def update
+		Emulation.gosu_game.update
+	end
+
+	def draw
+		Emulation.gosu_game.draw
 	end
 
 end
