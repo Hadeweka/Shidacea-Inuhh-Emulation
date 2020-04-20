@@ -1,9 +1,9 @@
 {
 	"title": "Inuhh Shinvasion",
 
-	"subtitle": "Testing environment for Shidacea and its extensions",
+	"subtitle": "Emulated version",
 
-	"description": "A simple test project to demonstrate the capabilities of Shidacea.\nStart it and play around with the options.",
+	"description": "A jump'n'run game about a dog",
 
 	"genres": [
 		"Jump'n'Run" 
@@ -22,7 +22,6 @@
 	"keywords": [
 		"inuhh",
 		"dog",
-		"sfml",
 		"jump-n-run"
 	],
 
@@ -38,8 +37,13 @@
 	"jingle": "",
 
 	"scripts": [
+		"Emulation/EL_Utility.rb",
 		"EmulationLayer.rb",
 		"Inuhh-Shinvasion/lib/Collider.rb",
+		"Emulation/EL_math.rb",
+		"Emulation/EL_Marshal.rb",
+		"Emulation/EL_Emulation.rb",
+		"Emulation/EL_Gosu.rb",
 		"Inuhh-Shinvasion/lib/Misc.rb",
 		"Inuhh-Shinvasion/lib/Datas.rb",
 		"Inuhh-Shinvasion/lib/Objects.rb",
