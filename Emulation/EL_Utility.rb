@@ -15,7 +15,7 @@ $LOAD_PATH = ""
 class File
 
 	def self.basename(arg_1, arg_2)
-		return arg_1.delete(arg_2)
+		return arg_1.gsub(arg_2, "")
 	end
 
 	def self.readlines(filename, &block)

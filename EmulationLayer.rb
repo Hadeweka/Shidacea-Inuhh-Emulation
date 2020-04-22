@@ -13,7 +13,7 @@ class SceneDummy < SDC::Scene
 		if event.has_type?(:KeyPressed) then
 			Emulation.gosu_game.button_down(event.key_code)
 			if event.key_code == SDC::EventKey::R then
-				Emulation.gosu_game.text_input.text = "Hadeweka" if Emulation.gosu_game.text_input
+				Emulation.gosu_game.text_input.text = "HDWK" if Emulation.gosu_game.text_input
 			end
 
 		elsif event.has_type?(:Closed)

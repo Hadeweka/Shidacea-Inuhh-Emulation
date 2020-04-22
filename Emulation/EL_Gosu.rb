@@ -84,7 +84,7 @@ module Gosu
 		end
 
 		def draw(text, x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
-			text = SDC::Text.new(text, @font, scale_x * 16)
+			text = SDC::Text.new(text.to_s, @font, scale_x * 16)
 			SDC.window.draw_translated(text, SDC::Coordinates.new(x, y) + Emulation.translation)
 		end
 
