@@ -1,0 +1,26 @@
+Things still to do:
+
+Emulation:
+- Fix FPS speedup after loading levels
+
+Graphics:
+- Use better font
+
+Audio:
+- Play music
+- Play sounds
+
+Shidacea core:
+- Allow dynamic changing of draw rate in case of FPS drops
+- Implement sounds
+- Implement text fields
+- Implement colored texts
+- Implement colored sprite drawing
+- Implement line drawing
+
+Inuhh:
+- Change order of drawn objects at worldmap
+- Cache loaded savestates at achievement screen
+
+Other:
+- Allow serialization to save states
