@@ -2,6 +2,7 @@ Things still to do:
 
 Emulation:
 - Fix FPS speedup after loading levels
+- Fix collision routine problems
 
 Graphics:
 - Use better font
