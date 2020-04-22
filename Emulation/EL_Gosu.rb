@@ -36,7 +36,6 @@ module Gosu
 	KbF11 = SDC::EventKey::F11
 	KbF12 = SDC::EventKey::F12
 
-
 	MsWheelDown = SDC::EventMouse::VerticalWheel
 	MsWheelUp = SDC::EventMouse::VerticalWheel
 
@@ -60,7 +59,7 @@ module Gosu
 	end
 
 	def milliseconds
-		return rand(1000)
+		return Emulation.frame_counter * 16.66666666666667
 	end
 
 	def button_down?(key)
@@ -85,7 +84,7 @@ module Gosu
 		end
 
 		def draw(text, x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
-			text = SDC::Text.new(text, @font, scale_x * 18)
+			text = SDC::Text.new(text, @font, scale_x * 16)
 			SDC.window.draw_translated(text, SDC::Coordinates.new(x, y) + Emulation.translation)
 		end
 
@@ -98,26 +97,64 @@ module Gosu
 	class Image
 
 		def initialize(source, options = {})
-			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
-				@sprite = SDC::Sprite.new
-				texture = SDC::Data.load_texture((SDC::Data::SYMBOL_PREFIX + source).to_sym, filename: source)
-				@sprite.link_texture(texture)
+			if source.is_a? SDC::Sprite then
+				@sprite = source
+			else
+				Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
+					@sprite = SDC::Sprite.new
+					texture = SDC::Data.load_texture((SDC::Data::SYMBOL_PREFIX + source).to_sym, filename: source)
+					@sprite.link_texture(texture)
+				end
 			end
 		end
 
 		def self.load_tiles(window, source, tile_width, tile_height, tiled, options = {})
-			return Array.new(4, Image.new(source))
+			return self.load_tiles(source, tile_width, tile_height, options)
 		end
 
 		def self.load_tiles(source, tile_width, tile_height, options = {})
-			return Array.new(50, Image.new(source))
+			return_array = []
+			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
+				# TODO: Only load the image once as soon as Shidacea provides the option to
+				full_texture = SDC::Data.load_texture((SDC::Data::SYMBOL_PREFIX + source).to_sym, filename: source)
+				full_texture_size = full_texture.size
+
+				nx = full_texture_size.x.to_i / tile_width
+				ny = full_texture_size.y.to_i / tile_height
+
+				0.upto(nx - 1) do |ix|
+					0.upto(ny - 1) do |iy|
+						sprite = SDC::Sprite.new
+
+						symbol_index = (SDC::Data::SYMBOL_PREFIX + source + "___#{ix}_#{iy}").to_sym
+
+						if !SDC::Data.textures[symbol_index] then
+
+							texture = SDC::Texture.new
+							texture.load_from_file(source, SDC::IntRect.new(ix * tile_width, iy * tile_height, tile_width, tile_height))
+							SDC::Data.add_texture(texture, index: symbol_index)
+
+						end
+
+						sprite.link_texture(SDC::Data.textures[symbol_index])
+
+						return_array[iy * nx + ix] = Image.new(sprite)
+					end
+				end
+			end
+
+			return return_array
 		end
 
 		def draw(x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
+			@sprite.scale = SDC::Coordinates.new(scale_x, scale_y)
 			SDC.window.draw_translated(@sprite, SDC::Coordinates.new(x, y) + Emulation.translation)
 		end
 
 		def draw_rot(x, y, z, angle, center_x=0.5, center_y=0.5, scale_x=1, scale_y=1, color=0xff_ffffff, mode=:default)
+			@sprite.scale = SDC::Coordinates.new(scale_x, scale_y)
+			@sprite.origin = SDC::Coordinates.new(center_x * @sprite.texture_rect.width, center_y * @sprite.texture_rect.height)
+			@sprite.rotation = angle
 			SDC.window.draw_translated(@sprite, SDC::Coordinates.new(x, y) + Emulation.translation)
 		end
 
@@ -145,7 +182,7 @@ module Gosu
 
 		end
 
-		def play(volume, speed, looping = false)
+		def play(volume)
 			
 		end
 

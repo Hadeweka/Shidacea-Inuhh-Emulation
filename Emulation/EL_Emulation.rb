@@ -16,6 +16,14 @@ module Emulation
 		return @main_path
 	end
 
+	def self.frame_counter
+		return @frame_counter
+	end
+
+	def self.tick_frame
+		@frame_counter += 1 
+	end
+
 	def self.in_path_dir(&block)
 		Dir.chdir(SDC::Script.path)
 		Dir.chdir("Inuhh-Shinvasion")
@@ -44,6 +52,7 @@ module Emulation
 	
 	def self.init
 		@main_path = Dir.getwd
+		@frame_counter = 0
 
 		self.reset_translation
 	end
