@@ -9,11 +9,10 @@ Graphics:
 
 Audio:
 - Play music [X]
-- Play sounds
+- Play sounds [X]
 
 Shidacea core:
-- Allow dynamic changing of draw rate in case of FPS drops
-- Implement sounds
+- Implement sounds [X]
 - Implement text fields [X]
 - Implement colored texts
 - Implement colored sprite drawing
@@ -25,3 +24,6 @@ Inuhh:
 
 Other:
 - Allow serialization to save states
+
+Launshi options:
+- Allow different draw rates for slower PCs

@@ -163,11 +163,21 @@ module Gosu
 	class Sample
 
 		def initialize(filename)
-
+			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
+				sound_buffer = SDC::Data.load_sound_buffer((SDC::Data::SYMBOL_PREFIX + filename).to_sym, filename: filename)
+				@sound = SDC::Sound.new
+				@sound.link_sound_buffer(sound_buffer)
+			end
 		end
 
 		def play(volume, speed, looping = false)
-			
+			@sound.volume = volume * 100.0
+			@sound.pitch = speed
+			@sound.play
+		end
+
+		def stop
+			@sound.stop
 		end
 
 	end
