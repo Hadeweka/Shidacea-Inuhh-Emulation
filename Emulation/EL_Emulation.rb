@@ -24,6 +24,14 @@ module Emulation
 		@frame_counter += 1 
 	end
 
+	def self.current_song
+		return @current_song
+	end
+
+	def self.current_song=(value)
+		@current_song = value
+	end
+
 	def self.in_path_dir(&block)
 		Dir.chdir(SDC::Script.path)
 		Dir.chdir("Inuhh-Shinvasion")
@@ -53,6 +61,7 @@ module Emulation
 	def self.init
 		@main_path = Dir.getwd
 		@frame_counter = 0
+		@running_song = nil
 
 		self.reset_translation
 	end

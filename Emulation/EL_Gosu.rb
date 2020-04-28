@@ -175,15 +175,24 @@ module Gosu
 	class Song
 
 		def self.current_song
-			return nil
+			return Emulation.current_song
 		end
 
 		def initialize(filename)
-
+			puts "Loading..."
+			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
+				@song = SDC::Music.new
+				@song.open_from_file(filename)
+			end
 		end
 
-		def play(volume)
-			
+		def play(looping)
+			@song.play
+			Emulation.current_song = self
+		end
+
+		def stop
+			@song.stop
 		end
 
 	end
