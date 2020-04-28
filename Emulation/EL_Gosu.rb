@@ -63,7 +63,7 @@ module Gosu
 	end
 
 	def button_down?(key)
-		return SDC.window.has_focus? && SDC::EventKey.is_pressed?(key, override_text_input: true)
+		return SDC.window.has_focus? && SDC::EventKey.is_pressed?(key)
 	end
 
 	class Color
