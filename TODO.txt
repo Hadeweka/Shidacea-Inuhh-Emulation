@@ -1,7 +1,7 @@
 Things still to do:
 
 Emulation:
-- Fix FPS speedup after loading levels
+- Fix FPS speedup after loading levels [X]
 - Fix collision routine problems
 
 Graphics:
@@ -14,7 +14,7 @@ Audio:
 Shidacea core:
 - Allow dynamic changing of draw rate in case of FPS drops
 - Implement sounds
-- Implement text fields
+- Implement text fields [X]
 - Implement colored texts
 - Implement colored sprite drawing
 - Implement line drawing

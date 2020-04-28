@@ -79,6 +79,16 @@ module Marshal
 		return obj
 	end
 
+	def self.dump(value, file)
+		self.init
+
+		self.convert(value, file)
+	end
+
+	def self.convert(value, file)
+		
+	end
+
 	def self.interpret(file)
 		indicator = self.read_byte(file)
 

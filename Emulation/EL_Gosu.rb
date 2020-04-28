@@ -63,7 +63,7 @@ module Gosu
 	end
 
 	def button_down?(key)
-		return SDC.window.has_focus? && SDC::EventKey.is_pressed?(key)
+		return SDC.window.has_focus? && SDC::EventKey.is_pressed?(key, override_text_input: true)
 	end
 
 	class Color
@@ -194,6 +194,7 @@ module Gosu
 
 		def initialize
 			@caret_pos = 0
+			@text = ""
 		end
 
 	end
@@ -205,6 +206,7 @@ module Gosu
 		def initialize(width, height, options = {})
 			@width = width
 			@height = height
+			@text_input = nil
 			Emulation.gosu_game = self
 		end
 
