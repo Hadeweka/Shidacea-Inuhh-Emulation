@@ -40,7 +40,6 @@ class SceneDummy < SDC::Scene
 			Emulation.gosu_game.button_down(event.key_code)
 
 		elsif event.has_type?(:Closed)
-			puts "Terminating..."
 			SDC.next_scene = nil
 
 		end

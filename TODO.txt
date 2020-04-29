@@ -2,7 +2,7 @@ Things still to do:
 
 Emulation:
 - Fix FPS speedup after loading levels [X]
-- Fix collision routine problems
+- Fix collision routine problems [X]
 
 Graphics:
 - Use better font
@@ -23,7 +23,7 @@ Inuhh:
 - Cache loaded savestates at achievement screen
 
 Other:
-- Allow serialization to save states
+- Allow serialization to save states [X]
 
 Launshi options:
 - Allow different draw rates for slower PCs

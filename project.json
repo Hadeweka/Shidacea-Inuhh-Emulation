@@ -39,8 +39,7 @@
 	"scripts": [
 		"Emulation/EL_Utility.rb",
 		"EmulationLayer.rb",
-		"Inuhh-Shinvasion/lib/Collider.rb",
-		"Emulation/EL_math.rb",
+		"Emulation/EL_Math.rb",
 		"Emulation/EL_Marshal.rb",
 		"Emulation/EL_Emulation.rb",
 		"Emulation/EL_Gosu.rb",

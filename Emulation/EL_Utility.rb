@@ -1,12 +1,8 @@
 def require(arg)
 
-	puts "Overriding required file or library: #{arg}"
-
 end
 
 def require_all(arg)
-
-	puts "Overriding required files: #{arg}"
 
 end
 

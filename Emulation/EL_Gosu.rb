@@ -23,6 +23,7 @@ module Gosu
 	Kb4 = SDC::EventKey::Num4
 	Kb5 = SDC::EventKey::Num5
 	KbP = SDC::EventKey::P
+	KbR = SDC::EventKey::R
 	KbF1 = SDC::EventKey::F1
 	KbF2 = SDC::EventKey::F2
 	KbF3 = SDC::EventKey::F3
@@ -189,7 +190,6 @@ module Gosu
 		end
 
 		def initialize(filename)
-			puts "Loading..."
 			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
 				@song = SDC::Music.new
 				@song.open_from_file(filename)
@@ -231,7 +231,6 @@ module Gosu
 
 		def show
 			Emulation.in_path_dir do
-				puts "Loading main routine..."
 				main_routine(SceneDummy, SDC::BaseGame, @caption, @width, @height)
 			end
 		end

@@ -71,6 +71,10 @@ module Marshal
 		return @symbols[index]
 	end
 
+	def self.get_symbol_index(sym)
+		return @symbols.index(sym)
+	end
+
 	def self.load(file)
 		self.init
 		version = self.read_bytes(file, 2)
@@ -79,14 +83,120 @@ module Marshal
 		return obj
 	end
 
-	def self.dump(value, file)
-		self.init
-
-		self.convert(value, file)
+	def self.write_byte(value, file)
+		self.write_bytes([value], file)
 	end
 
-	def self.convert(value, file)
-		
+	def self.write_bytes(values, file)
+		file.write(values.pack("C*"))
+	end
+
+	def self.dump(value, file)
+		self.init
+		self.write_bytes([4, 8], file)
+		self.convert_to_file(value, file)
+	end
+
+	def self.write_int(value, file)
+		if value == 0 then
+			self.write_byte(0, file)
+		elsif value.between?(1, 123) then
+			self.write_byte(value + 5, file)
+		elsif value.between?(-123, -1) then
+			self.write_byte(256 - 5 + value, file)
+		else
+			byte_count = nil
+			bytes = nil
+
+			# Determine byte number and create bit string
+			if value > 0 then
+				byte_count = (Math::log2(value + 1) / 8).ceil.to_i
+				self.write_byte(byte_count, file)
+				bytes = value.to_s(2)
+			else
+				byte_count = (Math::log2(-value) / 8).ceil.to_i
+				self.write_byte(256 - byte_count, file)
+				bytes = (256**byte_count + value).to_s(2)
+			end
+
+			# Fill up missing zeroes
+			bytes = bytes.rjust(8*byte_count, "0")
+
+			# Split string into 8-bit portions
+			byte_array = []
+			0.upto(byte_count - 1) do |i|
+				byte_array[i] = bytes[i*8 .. (i + 1)*8 - 1].to_i(2)
+			end
+
+			# Put bytes in correct Marshalling order
+			byte_array.reverse.each do |byte|
+				self.write_byte(byte, file)
+			end
+		end
+	end
+
+	def self.write_raw_string(value, file)
+		self.write_int(value.length, file)
+		value.bytes.each do |byte|
+			self.write_byte(byte, file)
+		end
+	end
+
+	def self.convert_to_file(value, file)
+		type = value.class
+
+		if type == NilClass then
+			self.write_byte(INDICATOR_NIL, file)
+
+		elsif type == TrueClass then
+			self.write_byte(INDICATOR_TRUE, file)
+
+		elsif type == FalseClass then
+			self.write_byte(INDICATOR_FALSE, file)
+
+		elsif type == Fixnum then
+			self.write_byte(INDICATOR_INT, file)
+			self.write_int(value, file)
+
+		elsif type == Array then
+			self.write_byte(INDICATOR_ARRAY, file)
+			self.write_int(value.length, file)
+
+			value.each do |element|
+				self.convert_to_file(element, file)
+			end
+
+		elsif type == String then
+			self.write_byte(INDICATOR_INSTANCE_VAR, file)
+			self.write_byte(INDICATOR_STRING, file)
+			self.write_raw_string(value, file)
+			self.write_int(1, file)
+			self.convert_to_file(:E, file)
+			self.convert_to_file(false, file)
+
+		elsif type == Hash then
+			self.write_byte(INDICATOR_HASH, file)
+			self.write_int(value.size, file)
+			value.each do |key, content|
+				self.convert_to_file(key, file)
+				self.convert_to_file(content, file)
+			end
+
+		elsif type == Symbol then
+			sym_index = self.get_symbol_index(value)
+			if sym_index then
+				self.write_byte(INDICATOR_SYMBOL_LINK, file)
+				self.write_int(sym_index, file)
+			else
+				self.write_byte(INDICATOR_SYMBOL, file)
+				self.add_symbol(value)
+				self.write_raw_string(value.to_s, file)
+			end
+
+		else
+			puts "Writing of #{type} class object #{value} not yet supported."
+			raise "Writing of #{type} class object #{value} not yet supported."
+		end
 	end
 
 	def self.interpret(file)
@@ -144,7 +254,7 @@ module Marshal
 			return result
 
 		elsif indicator == INDICATOR_SYMBOL_LINK then
-			index = self.read_byte(file)
+			index = self.read_integer(file)
 
 			return self.ref_symbol(index)
 
@@ -192,7 +302,7 @@ module Marshal
 			puts "Next 100 bytes: " + other_bytes.bytes.inspect
 			puts "Next 100 chars: " + other_bytes.chars.inspect
 			puts "Terminating execution..."
-			raise("Terminated Marshal loading due to unknown indicator #{indicator.chr} (#{indicator})")
+			raise "Terminated Marshal loading due to unknown indicator #{indicator.chr} (#{indicator})"
 
 		end
 	end
