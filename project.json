@@ -1,15 +1,15 @@
 {
 	"title": "Inuhh Shinvasion",
 
-	"subtitle": "Emulated version",
+	"subtitle": "Special emulation of Inuhh Shinvasion version 1.1.0",
 
-	"description": "A jump'n'run game about a dog",
+	"description": "A jump'n'run game about a dog fighting spherical aliens.",
 
 	"genres": [
 		"Jump'n'Run" 
 	],
 
-	"project_version": "1.0.1",
+	"project_version": "1.0.0",
 
 	"shidacea_version": "0.0.1d",
 
