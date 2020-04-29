@@ -1,7 +1,7 @@
 # Shidacea-Inuhh-Emulation
 Emulation script to play Inuhh Shinvasion using the Shidacea Engine
 
-NOTE: Currently this project has no real function yet. This will change soon.
+Current version: 0.9.0
 
 ## Description
 
@@ -14,3 +14,11 @@ This can also be used as a template to port other projects written in another Ru
 
 Just install a working build of the Shidacea engine with Launshi and clone this project (including the Inuhh Shinvasion submodule) into the projects folder.
 Then, start Launshi and start the project Inuhh Shinvasion.
+
+## Missing features
+
+* Colored text
+* Line drawing
+* Colored sprites
+* Better font
+* Inuhh Shinvasion improvements
