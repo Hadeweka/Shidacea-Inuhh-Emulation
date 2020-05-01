@@ -86,6 +86,7 @@ module Gosu
 
 		def draw(text, x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
 			text = SDC::Text.new(text.to_s, @font, scale_x * 16)
+			text.color = Emulation.parse_color(color)
 			SDC.window.draw_translated(text, SDC::Coordinates.new(x, y) + Emulation.translation)
 		end
 
@@ -149,13 +150,17 @@ module Gosu
 
 		def draw(x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
 			@sprite.scale = SDC::Coordinates.new(scale_x, scale_y)
+			@sprite.color = Emulation.parse_color(color)
+
 			SDC.window.draw_translated(@sprite, SDC::Coordinates.new(x, y) + Emulation.translation)
 		end
 
 		def draw_rot(x, y, z, angle, center_x=0.5, center_y=0.5, scale_x=1, scale_y=1, color=0xff_ffffff, mode=:default)
 			@sprite.scale = SDC::Coordinates.new(scale_x, scale_y)
+			@sprite.color = Emulation.parse_color(color)
 			@sprite.origin = SDC::Coordinates.new(center_x * @sprite.texture_rect.width, center_y * @sprite.texture_rect.height)
 			@sprite.rotation = angle
+
 			SDC.window.draw_translated(@sprite, SDC::Coordinates.new(x, y) + Emulation.translation)
 		end
 

@@ -14,8 +14,8 @@ Audio:
 Shidacea core:
 - Implement sounds [X]
 - Implement text fields [X]
-- Implement colored texts
-- Implement colored sprite drawing
+- Implement colored texts [X]
+- Implement colored sprite drawing [X]
 - Implement line drawing
 
 Inuhh:

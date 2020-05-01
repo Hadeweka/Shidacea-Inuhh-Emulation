@@ -57,6 +57,18 @@ module Emulation
 	def self.reset_translation
 		@translation = SDC::Coordinates.new
 	end
+
+	def self.parse_color(color)
+		b = color % 0x100
+		rest = ((color - b) / 0x100).to_i
+		g = rest % 0x100
+		rest = ((rest - g) / 0x100).to_i
+		r = rest % 0x100
+		rest = ((rest - r) / 0x100).to_i
+		alpha = rest % 0x100
+
+		return SDC::Color.new(r, g, b, alpha)
+	end
 	
 	def self.init
 		@main_path = Dir.getwd
