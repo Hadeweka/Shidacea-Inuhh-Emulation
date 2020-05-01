@@ -80,7 +80,7 @@ module Gosu
 		def initialize(window, font_name, height)
 			@font = SDC::Font.new
 			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path) do
-				@font.load_from_file("arial.ttf")
+				@font.load_from_file("arlrdbd.ttf")
 			end
 		end
 

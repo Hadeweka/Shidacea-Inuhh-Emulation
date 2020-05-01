@@ -5,7 +5,7 @@ Emulation:
 - Fix collision routine problems [X]
 
 Graphics:
-- Use better font
+- Use better font [X]
 
 Audio:
 - Play music [X]
