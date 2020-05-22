@@ -18,5 +18,4 @@ Then, start Launshi and start the project Inuhh Shinvasion.
 ## Missing features
 
 * Line drawing
-* Correct ZOrdering
 * Inuhh Shinvasion improvements
