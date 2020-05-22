@@ -17,8 +17,6 @@ Then, start Launshi and start the project Inuhh Shinvasion.
 
 ## Missing features
 
-* Colored text
 * Line drawing
-* Colored sprites
-* Better font
+* Correct ZOrdering
 * Inuhh Shinvasion improvements
