@@ -19,7 +19,7 @@ Shidacea core:
 - Implement line drawing
 
 Inuhh:
-- Change order of drawn objects at worldmap
+- Change order of drawn objects at worldmap [X]
 - Cache loaded savestates at achievement screen
 
 Other:
