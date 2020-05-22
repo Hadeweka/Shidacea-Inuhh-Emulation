@@ -1,7 +1,7 @@
 # Shidacea-Inuhh-Emulation
 Emulation script to play Inuhh Shinvasion using the Shidacea Engine
 
-Current version: 0.1.0
+Current version: 0.2.0
 
 ## Description
 
