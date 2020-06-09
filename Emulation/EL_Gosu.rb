@@ -56,7 +56,11 @@ module Gosu
 	end
 
 	def draw_line(x1, y1, c1, x2, y2, c2, z = 0, mode = :default)
-
+		line_shape = SDC::DrawShapeLine.new
+		line_shape.position = SDC.xy(x1, y1)
+		line_shape.outline_color = Emulation.parse_color(c1)
+		line_shape.line = SDC.xy(x2-x1, y2-y1)
+		SDC.window.draw(line_shape, z)
 	end
 
 	def milliseconds
@@ -91,7 +95,8 @@ module Gosu
 		end
 
 		def text_width(text, scale_x = 1)
-			return 0
+			# TODO: Fix this eventually
+			return 1000
 		end
 
 	end
@@ -236,7 +241,7 @@ module Gosu
 
 		def show
 			Emulation.in_path_dir do
-				main_routine(SceneDummy, SDC::BaseGame, @caption, @width, @height)
+				SDC::main_routine(SceneDummy, game_class: SDC::BaseGame, title: @caption, width: @width, height: @height)
 			end
 		end
 

@@ -47,28 +47,4 @@ class Enemy < Entity
 
 end
 
-class Complex
-
-    def self.sqrt(value)
-        if value.is_a? Complex then
-            new_abs = Math::sqrt(value.abs)
-            new_arg = 0.5 * value.arg
-            return self.polar(new_abs, new_arg)
-        elsif value >= 0 then
-            return Math::sqrt(value)
-        else
-            return Complex.new(0.0, -Math::sqrt(-value))
-        end
-    end
-
-    def self.cbrt(value)
-        if value.is_a? Complex then
-            new_abs = Math::cbrt(value.abs)
-            new_arg = (1/3) * value.arg
-            return self.polar(new_abs, new_arg)
-        else
-            return Math::sqrt(value)
-        end
-    end
-
-end
+Marshal = SDC::Marshal

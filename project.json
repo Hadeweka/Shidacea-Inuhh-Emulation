@@ -40,7 +40,6 @@
 		"Emulation/EL_Utility.rb",
 		"EmulationLayer.rb",
 		"Emulation/EL_Math.rb",
-		"Emulation/EL_Marshal.rb",
 		"Emulation/EL_Emulation.rb",
 		"Emulation/EL_Gosu.rb",
 		"Inuhh-Shinvasion/lib/Misc.rb",
