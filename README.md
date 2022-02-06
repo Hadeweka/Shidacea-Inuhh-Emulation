@@ -1,4 +1,5 @@
 # Shidacea-Inuhh-Emulation
+
 Emulation script to play Inuhh Shinvasion using the Shidacea Engine
 
 Current version: 0.3.0
@@ -19,5 +20,4 @@ Currently, the best option is to use Shipectral as the base engine.
 
 ## Missing features
 
-* Line drawing
 * Inuhh Shinvasion improvements
