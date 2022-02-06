@@ -51,11 +51,11 @@ module Emulation
 	end
 
 	def self.set_translation(dx, dy)
-		@translation = SDC::Coordinates.new(dx, dy)
+		@translation = SDC.xy(dx, dy)
 	end
 
 	def self.reset_translation
-		@translation = SDC::Coordinates.new
+		@translation = SDC.xy
 	end
 
 	def self.parse_color(color)
@@ -67,7 +67,7 @@ module Emulation
 		rest = ((rest - r) / 0x100).to_i
 		alpha = rest % 0x100
 
-		return SDC::Color.new(r, g, b, alpha)
+		return SDC::Graphics::Color.new(r, g, b, alpha: alpha)
 	end
 	
 	def self.init

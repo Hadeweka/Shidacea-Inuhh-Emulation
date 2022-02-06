@@ -56,11 +56,11 @@ module Gosu
 	end
 
 	def draw_line(x1, y1, c1, x2, y2, c2, z = 0, mode = :default)
-		line_shape = SDC::DrawShapeLine.new
+		line_shape = SDC::Graphics::Shapes::Line.new
 		line_shape.position = SDC.xy(x1, y1)
 		line_shape.outline_color = Emulation.parse_color(c1)
 		line_shape.line = SDC.xy(x2-x1, y2-y1)
-		SDC.window.draw(line_shape, z)
+		SDC.window.draw(line_shape, z: z)
 	end
 
 	def milliseconds
@@ -78,20 +78,20 @@ module Gosu
 	class Font
 
 		def initialize(height, options = {})
-			@font = SDC::Font.new
+			@font = SDC::Graphics::Font.new
 		end
 
 		def initialize(window, font_name, height)
-			@font = SDC::Font.new
+			@font = SDC::Graphics::Font.new
 			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path) do
 				@font.load_from_file("arlrdbd.ttf")
 			end
 		end
 
 		def draw(text, x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
-			text = SDC::Text.new(text.to_s, @font, scale_x * 16)
+			text = SDC::Graphics::Text.new(text.to_s, @font, character_size: scale_x.to_i * 16)
 			text.color = Emulation.parse_color(color)
-			SDC.window.draw_translated(text, z, SDC::Coordinates.new(x, y) + Emulation.translation)
+			SDC.window.draw_translated(text, z: z, at: SDC.xy(x, y) + Emulation.translation)
 		end
 
 		def text_width(text, scale_x = 1)
@@ -104,11 +104,11 @@ module Gosu
 	class Image
 
 		def initialize(source, options = {})
-			if source.is_a? SDC::Sprite then
+			if source.is_a? SDC::Graphics::Sprite then
 				@sprite = source
 			else
 				Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
-					@sprite = SDC::Sprite.new
+					@sprite = SDC::Graphics::Sprite.new
 					texture = SDC::Data.load_texture((SDC::Data::SYMBOL_PREFIX + source).to_sym, filename: source)
 					@sprite.link_texture(texture)
 				end
@@ -131,14 +131,14 @@ module Gosu
 
 				0.upto(nx - 1) do |ix|
 					0.upto(ny - 1) do |iy|
-						sprite = SDC::Sprite.new
+						sprite = SDC::Graphics::Sprite.new
 
 						symbol_index = (SDC::Data::SYMBOL_PREFIX + source + "___#{ix}_#{iy}").to_sym
 
 						if !SDC::Data.textures[symbol_index] then
 
-							texture = SDC::Texture.new
-							texture.load_from_file(source, SDC::IntRect.new(ix * tile_width, iy * tile_height, tile_width, tile_height))
+							texture = SDC::Graphics::Texture.new
+							texture.load_from_file(source, texture_rect: SDC::IntRect.new(ix * tile_width, iy * tile_height, tile_width, tile_height))
 							SDC::Data.add_texture(texture, index: symbol_index)
 
 						end
@@ -154,19 +154,19 @@ module Gosu
 		end
 
 		def draw(x, y, z, scale_x = 1, scale_y = 1, color = 0xff_ffffff, mode = :default)
-			@sprite.scale = SDC::Coordinates.new(scale_x, scale_y)
+			@sprite.scale = SDC.xy(scale_x, scale_y)
 			@sprite.color = Emulation.parse_color(color)
 
-			SDC.window.draw_translated(@sprite, z, SDC::Coordinates.new(x, y) + Emulation.translation)
+			SDC.window.draw_translated(@sprite, z: z, at: SDC.xy(x, y) + Emulation.translation)
 		end
 
 		def draw_rot(x, y, z, angle, center_x=0.5, center_y=0.5, scale_x=1, scale_y=1, color=0xff_ffffff, mode=:default)
-			@sprite.scale = SDC::Coordinates.new(scale_x, scale_y)
+			@sprite.scale = SDC.xy(scale_x, scale_y)
 			@sprite.color = Emulation.parse_color(color)
-			@sprite.origin = SDC::Coordinates.new(center_x * @sprite.texture_rect.width, center_y * @sprite.texture_rect.height)
+			@sprite.origin = SDC.xy(center_x * @sprite.texture_rect.width, center_y * @sprite.texture_rect.height)
 			@sprite.rotation = angle
 
-			SDC.window.draw_translated(@sprite, z, SDC::Coordinates.new(x, y) + Emulation.translation)
+			SDC.window.draw_translated(@sprite, z: z, at: SDC.xy(x, y) + Emulation.translation)
 		end
 
 	end
@@ -176,7 +176,7 @@ module Gosu
 		def initialize(filename)
 			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
 				sound_buffer = SDC::Data.load_sound_buffer((SDC::Data::SYMBOL_PREFIX + filename).to_sym, filename: filename)
-				@sound = SDC::Sound.new
+				@sound = SDC::Audio::Sound.new
 				@sound.link_sound_buffer(sound_buffer)
 			end
 		end
@@ -201,7 +201,7 @@ module Gosu
 
 		def initialize(filename)
 			Emulation.temp_path(Emulation.main_path + "/" + SDC::Script.path + "/Inuhh-Shinvasion") do
-				@song = SDC::Music.new
+				@song = SDC::Audio::Music.new
 				@song.open_from_file(filename)
 			end
 		end

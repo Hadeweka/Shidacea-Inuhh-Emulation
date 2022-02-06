@@ -1,29 +1,7 @@
 Things still to do:
 
-Emulation:
-- Fix FPS speedup after loading levels [X]
-- Fix collision routine problems [X]
-
-Graphics:
-- Use better font [X]
-
-Audio:
-- Play music [X]
-- Play sounds [X]
-
-Shidacea core:
-- Implement sounds [X]
-- Implement text fields [X]
-- Implement colored texts [X]
-- Implement colored sprite drawing [X]
-- Implement line drawing
-
 Inuhh:
-- Change order of drawn objects at worldmap [X]
 - Cache loaded savestates at achievement screen
-
-Other:
-- Allow serialization to save states [X]
 
 Launshi options:
 - Allow different draw rates for slower PCs
