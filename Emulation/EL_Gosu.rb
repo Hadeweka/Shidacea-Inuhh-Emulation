@@ -48,6 +48,15 @@ module Gosu
 		block.call
 	end
 
+	def fps
+		-1
+	end
+
+	def sleep(amt)
+		(5000000 * amt).to_i.times do
+		end
+	end
+
 	def translate(dx, dy, &block)
 		# TODO: Use viewports for that, maybe, at least for scale and rotate?
 		Emulation.set_translation(dx, dy)
