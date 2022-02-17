@@ -18,6 +18,8 @@ Then, start Launshi and start the project Inuhh Shinvasion.
 
 Currently, the best option is to use Shipectral as the base engine.
 
-## Missing features
+## Todo
 
-* Inuhh Shinvasion improvements
+* [ ] General Inuhh Shinvasion improvements
+* [ ] Support for Shipedia as a separate project
+* [ ] Precompiled executables

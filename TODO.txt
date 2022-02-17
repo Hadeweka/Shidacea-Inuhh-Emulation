@@ -1,7 +1,0 @@
-Things still to do:
-
-Inuhh:
-- Cache loaded savestates at achievement screen
-
-Launshi options:
-- Allow different draw rates for slower PCs
