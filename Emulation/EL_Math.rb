@@ -10,7 +10,7 @@ module Collider
             ELLIPSE_1.semiaxes = SDC.xy(entity_1.xsize, entity_1.ysize)
             ELLIPSE_2.semiaxes = SDC.xy(entity_2.xsize, entity_2.ysize)
 
-            SDC::Collider.test(ELLIPSE_1, SDC.xy(entity_1.x, entity_1.y), ELLIPSE_2, SDC.xy(entity_2.x, entity_2.y))
+            SDC::Collider.test(ELLIPSE_1, SDC.xy(entity_1.x, entity_1.y-entity_1.ysize), ELLIPSE_2, SDC.xy(entity_2.x, entity_2.y-entity_2.ysize))
         end
     end
 
