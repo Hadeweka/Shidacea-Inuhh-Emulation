@@ -21,5 +21,6 @@ Currently, the best option is to use Shipectral as the base engine.
 ## Todo
 
 * [ ] General Inuhh Shinvasion improvements
+* [ ] Better font
 * [ ] Support for Shipedia as a separate project
 * [ ] Precompiled executables

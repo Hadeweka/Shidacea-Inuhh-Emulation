@@ -22,6 +22,11 @@ module Gosu
 	Kb3 = SDC::EventKey::Num3
 	Kb4 = SDC::EventKey::Num4
 	Kb5 = SDC::EventKey::Num5
+	Kb6 = SDC::EventKey::Num6
+	Kb7 = SDC::EventKey::Num7
+	Kb8 = SDC::EventKey::Num8
+	Kb9 = SDC::EventKey::Num9
+	Kb0 = SDC::EventKey::Num0
 	KbP = SDC::EventKey::P
 	KbR = SDC::EventKey::R
 	KbF1 = SDC::EventKey::F1

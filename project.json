@@ -38,6 +38,7 @@
 		"Emulation/EL_Math.rb",
 		"Emulation/EL_Emulation.rb",
 		"Emulation/EL_Gosu.rb",
+		"Inuhh-Shinvasion/lib/Keys.rb",
 		"Inuhh-Shinvasion/lib/Misc.rb",
 		"Inuhh-Shinvasion/lib/Datas.rb",
 		"Inuhh-Shinvasion/lib/Objects.rb",
@@ -45,6 +46,12 @@
 		"Inuhh-Shinvasion/lib/Enemies/",
 		"Inuhh-Shinvasion/lib/Enemies.rb",
 		"Inuhh-Shinvasion/lib/Level.rb",
+		"Inuhh-Shinvasion/lib/Main/Residuum.rb",
+		"Inuhh-Shinvasion/lib/Main/Projectile.rb",
+		"Inuhh-Shinvasion/lib/Main/Inuhh_Main.rb",
+		"Inuhh-Shinvasion/lib/Main/World_Inuhh.rb",
+		"Inuhh-Shinvasion/lib/Main/Map.rb",
+		"Inuhh-Shinvasion/lib/Main/StdTextField.rb",
 		"Inuhh-Shinvasion/Inuhh.rb"
 	]
 }
